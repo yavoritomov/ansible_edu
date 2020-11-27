@@ -1,0 +1,10 @@
+-
+  name: Stop Service 
+  hosts: WS
+  vars:
+    service: httpd
+  tasks:
+   - name: Stopping service httpd, if not stopped
+     service:
+       name: '{{service}}'
+       state: stopped

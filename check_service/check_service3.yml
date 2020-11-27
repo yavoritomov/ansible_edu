@@ -1,0 +1,9 @@
+- hosts: WS
+  gather_facts: yes
+  tasks:
+  - name: Gathering service facts
+    service_facts:
+    register: services_state
+  - debug: var=services_state.ansible_facts.services["sshd.service"].state
+  - debug: var=services_state.ansible_facts.services["httpd.service"].state
+    when: services_state.ansible_facts.services["httpd.service"].state.find('stopped') != -1

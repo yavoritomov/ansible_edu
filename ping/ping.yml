@@ -1,0 +1,6 @@
+-
+  name: Ping
+  hosts: ws4
+  tasks:
+   - name: Ping Test
+     ping:

@@ -1,0 +1,8 @@
+-
+  name: Ping
+  hosts: WS
+  tasks:
+   - name: Start service httpd, if not started
+     service:
+       name: httpd
+       state: started
