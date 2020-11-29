@@ -1,0 +1,18 @@
+- hosts: WS
+  gather_facts: yes
+  tasks:
+
+  - name: Gathering service facts Linux
+    service_facts:
+    when: ansible_os_family == "RedHat" or
+          ansible_os_family == "CentOS"
+    register: services_state
+  - debug: var=services_state.ansible_facts.services["sshd.service"].state
+  - debug: var=services_state.ansible_facts.services["httpd.service"].state
+    when: services_state.ansible_facts.services["httpd.service"].state.find('stopped') != -1
+  
+  - name: Gatering service facts Windows
+    ansible.windows.win_service_info:
+    when: ansible_os_family == "Windows"
+    register: service_info
+    

@@ -1,0 +1,9 @@
+- 
+  name: Create users
+  hosts: ws
+  tasks:
+    - user: name='{{item}}'   state=present
+      loop:
+       - bob
+       - lob
+       - mob
